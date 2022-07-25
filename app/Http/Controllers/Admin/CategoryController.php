@@ -102,6 +102,7 @@ class CategoryController extends Controller
             'image' => $image
         ]);
 
+        
         return to_route('admin.categories.index');
 
     }
