@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TableStoreRequest;
 
 class TableController extends Controller
 {
@@ -35,9 +36,18 @@ class TableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TableStoreRequest $request)
     {
-        //
+        Table::create([
+            'name' => $request->name,
+            'guest_number' =>$request->guest_number,
+            'status' => $request->status,
+            'location' => $request->location
+        ]);
+
+        return to_route('admin.tables.index');
+
+
     }
 
     /**
@@ -57,9 +67,10 @@ class TableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Table $table)
     {
-        //
+       
+        return view('admin.tables.edit',compact('table'));
     }
 
     /**
@@ -69,10 +80,14 @@ class TableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TableStoreRequest $request, Table $table)
     {
-        //
+       
+        $table->update($request->validated());  
+
+        return to_route('admin.tables.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -80,8 +95,11 @@ class TableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Table $table)
     {
-        //
+        $table->delete();
+
+        return to_route('admin.tables.index');
+
     }
 }
