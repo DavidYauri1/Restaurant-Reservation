@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Table;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reservation extends Model
 {
@@ -19,4 +20,9 @@ class Reservation extends Model
         'guest_number'
 
     ];
+
+    public function table(){
+        return $this->belongsTo(Table::class);
+    }
+
 }

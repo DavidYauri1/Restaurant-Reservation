@@ -29,8 +29,10 @@ class ReservationController extends Controller
      */
     public function create()
     {
-       $tables = Table::all();
-       return to_route('admin.reservations.create',compact('tables'));
+        $tables = Table::all();
+         return view('admin.reservations.create',compact('tables'));
+
+       
 
     }
 
