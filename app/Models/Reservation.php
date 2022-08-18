@@ -21,6 +21,11 @@ class Reservation extends Model
 
     ];
 
+    protected $dates = [
+        'res_date'
+    ];
+
+
     public function table(){
         return $this->belongsTo(Table::class);
     }
