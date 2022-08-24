@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Fronted\WelcomeController;
 use App\Http\Controllers\Frontnd\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontnd\MenuController as FrontendMenuController;
 use App\Http\Controllers\Frontnd\ReservationController as FrontndReservationController;
@@ -21,9 +22,9 @@ use App\Http\Controllers\Frontnd\ReservationController as FrontndReservationCont
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
+
+
 
 Route::get('/cagories',[FrontendCategoryController::class,'index'])->name('categories.index');
 Route::get('/cagories/{category}',[FrontendCategoryController::class,'show'])->name('categories.show');
